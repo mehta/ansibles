@@ -1,0 +1,5 @@
+[group-name]
+# -- node details
+
+# -- Sample node detail could be
+vega-node ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key ansible_ssh_user=vagrant ansible_ssh_port=22 ansible_ssh_host=192.168.33.10

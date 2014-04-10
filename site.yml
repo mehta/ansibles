@@ -1,0 +1,9 @@
+---
+# playbook deploys the:
+# -: coming soon..
+
+
+# apply common configuration to all hosts
+- hosts: all
+  roles:
+  - common
