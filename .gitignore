@@ -1,0 +1,36 @@
+### SublimeText ###
+# workspace files are user-specific
+*.sublime-workspace
+
+### vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+### TextMate ###
+*.tmproj
+*.tmproject
+tmtags
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+## Private Ignores
+*.hosts # avoid pushing private files
+

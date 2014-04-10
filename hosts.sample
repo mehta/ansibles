@@ -1,0 +1,6 @@
+[group-name]
+# -- node details
+
+# -- Sample node detail could be
+# -- All CAPS are placeholders, should be replaced!
+NODE-NAME ansible_ssh_private_key_file=PATH-TO-PRIVATE-KEY ansible_ssh_user=SSH-USER-NAME ansible_ssh_port=SSH-PORT ansible_ssh_host=SSH-IP-ADDRESS-OF-TARGET-NODE
