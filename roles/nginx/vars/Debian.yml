@@ -1,0 +1,12 @@
+---
+
+dependencies:
+  - wget
+  - git
+  - libpcre3
+  - libpcre3-dev
+  - openssl
+  - zlib1g
+  - zlib1g-dev
+  - libssl-dev
+  - libperl-dev

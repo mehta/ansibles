@@ -1,0 +1,40 @@
+# file: nginx/tasks/modules.yml
+
+- include: source_modules/http_stub_status_module
+  when: nginx_source_modules_included.http_stub_status_module is defined
+
+- include: source_modules/http_ssl_module
+  when: nginx_source_modules_included.http_ssl_module is defined
+
+- include: source_modules/http_gzip_static_module
+  when: nginx_source_modules_included.http_gzip_static_module is defined
+
+- include: source_modules/upload_progress_module
+  when: nginx_source_modules_included.upload_progress_module is defined
+
+- include: source_modules/headers_more_module
+  when: nginx_source_modules_included.headers_more_module is defined
+
+- include: source_modules/http_auth_request_module
+  when: nginx_source_modules_included.http_auth_request_module is defined
+
+- include: source_modules/http_echo_module
+  when: nginx_source_modules_included.http_echo_module is defined
+
+- include: source_modules/google_perftools_module
+  when: nginx_source_modules_included.google_perftools_module is defined
+
+- include: source_modules/ipv6_module
+  when: nginx_source_modules_included.ipv6_module is defined
+
+- include: source_modules/http_real_ip_module
+  when: nginx_source_modules_included.http_real_ip_module is defined
+
+- include: source_modules/http_spdy_module
+  when: nginx_source_modules_included.http_spdy_module is defined
+
+- include: source_modules/naxsi_module
+  when: nginx_source_modules_included.naxsi_module is defined
+
+- include: source_modules/http_mp4_module
+  when: nginx_source_modules_included.http_mp4_module is defined

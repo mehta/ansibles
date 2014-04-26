@@ -1,0 +1,17 @@
+# file: nginx/tasks/modules/headers_more_module.yml
+# configure flag: --add-module=/tmp/nginx_headers_more
+
+## For DEBIAN nodes
+- name: headers_more_module | DEBIAN | download headers_more_module source
+  get_url:
+    url: "{{nginx_headers_more_url}}"
+    dest: "/tmp/nginx-headers-more-module-{{nginx_headers_more_version}}.tar.gz"
+  when: ansible_os_family == 'Debian'
+
+- name: headers_more_module | DEBIAN | unpack headers_more_module source
+  command: tar -xvzf /tmp/nginx-headers-more-module-{{ nginx_headers_more_version }}.tar.gz chdir=/tmp creates=/tmp/headers-more-nginx-module-{{nginx_headers_more_version}}
+  when: ansible_os_family == 'Debian'
+
+- name: headers_more_module | DEBIAN | copy headers_more_module source
+  command: sudo cp -R /tmp/headers-more-nginx-module-{{ nginx_headers_more_version }} /tmp/nginx_headers_more
+  when: ansible_os_family == 'Debian'
