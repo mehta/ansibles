@@ -1,0 +1,16 @@
+---
+# setup nginx
+
+- name: load target-node specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+- include: common
+- include: source_install
+  when: nginx_install_method == "source"
+- include: package_install
+  when: nginx_install_method == "package"
+- include: nxsite
+- include: configure
+- include: default_site
+  when: default_site == True
+- include: sites
+  when: nginx_sites is defined and nginx_sites|lower != 'none'

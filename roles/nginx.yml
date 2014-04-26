@@ -1,0 +1,9 @@
+---
+
+- name: nginx.yml | setup nginx
+  hosts: all:!localhost
+  sudo: True
+  gather_facts: True
+  roles:
+    - { role: common, tags: common }
+    - { role: nginx, tags: nginx }

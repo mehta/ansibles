@@ -1,0 +1,4 @@
+# file: nginx/tasks/modules/http_mp4_module
+# configure flag: --with-http_mp4_module
+
+# no contents

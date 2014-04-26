@@ -1,0 +1,120 @@
+# nginx/tasks/common
+
+## For Debian Nodes
+- name: common | DEBIAN | dependencies
+  apt: pkg={{ item }} state=installed
+  with_items: dependencies
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | create nginx group
+  group: name={{ nginx_group }} gid={{nginx_gid}} state=present
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | make sure nginx user is present
+  user:
+    name={{ nginx_user }}
+    group={{ nginx_group }}
+    uid={{ nginx_uid }}
+    home={{ nginx_home_dir }}
+    state=present
+    createhome=yes
+    shell=/bin/false
+    system=yes
+    password={{ nginx_user_password }}
+  when: ansible_os_family == 'Debian'
+
+- name:  common | DEBIAN | set right expiration on the nginx user
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 {{ nginx_user }}"
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | make sure the www directory is present
+  action:
+    file path={{ nginx_www_dir }}
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | make sure the log directory is present
+  action:
+    file path={{ nginx_log_dir }}
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | conf directory exists
+  file:
+    path={{ nginx_dir }}
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    recurse=yes
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | sites-available directory exists
+  file:
+    path={{ nginx_dir }}/sites-available
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | sites-enabled directory exists
+  file:
+    path={{ nginx_dir }}/sites-enabled
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | conf.d directory exists
+  file:
+    path={{ nginx_dir }}/conf.d
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+- name: common | DEBIAN | log directory exits
+  file:
+    path={{ nginx_log_dir }}
+    owner={{ nginx_user }}
+    group={{ nginx_group }}
+    mode=0755
+    recurse=yes
+    state=directory
+  when: ansible_os_family == 'Debian'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## For RedHat Nodes
+- name: common | REDHAT | dependencies
+  yum: pkg={{ item }} state=installed
+  when: ansible_os_family == 'RedHat'
+  with_items: dependencies
+
+## TODO: pending redhat implementation
+

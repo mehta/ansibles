@@ -1,0 +1,13 @@
+# file: nginx/tasks/nxsite
+## read more at: github.com/Dreyer/nxensite
+
+
+## For DEBIAN nodes
+- name: nxsite | DEBIAN | copy nxensite and nxdissite scripts
+  template:
+    src: "{{item}}.j2"
+    dest: "/usr/sbin/{{item}}"
+    owner: "{{nginx_user}}"
+    group: "{{nginx_user}}"
+    mode: 0755
+  with_items: ["nxensite", "nxdissite"]
