@@ -1,0 +1,24 @@
+# file: nginx/tasks/modules/http_stub_status_module.yml
+# configure flag: --with-http_stub_status_module
+
+- include: _authorized_ips
+
+## For DEBIAN nodes
+- name: http_stub_status_module | DEBIAN | create configuration entry for nginx status
+  template:
+    src: ../../templates/modules/nginx_status.j2
+    dest: "{{nginx_dir}}/sites-available/nginx_status"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: 0644
+  when: ansible_os_family == 'Debian'
+
+- name: http_stub_status_module | DEBIAN | enable the status stub in sites-available
+  file:
+    path: "{{nginx_dir}}/sites-enabled/nginx_status"
+    src: "{{nginx_dir}}/sites-available/nginx_status"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    state: link
+    force: yes
+  when: ansible_os_family == 'Debian'

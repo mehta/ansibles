@@ -1,0 +1,21 @@
+# file: nginx/tasks/package
+
+## For DEBIAN nodes
+- name: package | DEBIAN | make sure ansible required dependencies are installed
+  apt:
+    pkg: python-pycurl
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: package | DEBIAN | Add the nginx repository
+  apt_repository:
+    repo: ppa:nginx/stable
+  when: ansible_os_family == 'Debian'
+
+- name: package | DEBIAN | Make sure nginx is installed (package)
+  apt:
+    pkg: nginx
+    state: present
+  notify:
+    - restart nginx
+  when: ansible_os_family == 'Debian'

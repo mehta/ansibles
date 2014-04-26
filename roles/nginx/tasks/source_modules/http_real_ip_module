@@ -1,0 +1,13 @@
+# file: nginx/tasks/modules/http_realip_module.yml
+# configure flag: --with-http_realip_module
+
+
+## For DEBIAN nodes
+- name: http_real_ip_module | DEBIAN | create configuration entry for http_realip_module configuration
+  template:
+    src: ../../templates/modules/http_realip.conf.j2
+    dest: "{{ nginx_dir }}/conf.d/http_realip.conf"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: 0644
+  when: ansible_os_family == 'Debian'

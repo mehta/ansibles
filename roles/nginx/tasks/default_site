@@ -1,0 +1,29 @@
+# file: nginx/tasks/default_site
+
+## For DEBIAN nodes
+- name: default_site | DEBIAN | make sure default site root directory present
+  file:
+    path: "{{nginx_www_dir}}/default"
+    state: directory
+    owner: "{{nginx_user}}"
+    group: "{{nginx_user}}"
+    mode: 0754
+  when: ansible_os_family == 'Debian'
+
+- name: default_site | DEBIAN | update default site configuration
+  template:
+    src: default.site.j2
+    dest: "{{nginx_dir}}/sites-available/default"
+    owner: "{{nginx_user}}"
+    group: "{{nginx_user}}"
+    mode: 0644
+  when: ansible_os_family == 'Debian'
+
+- name: default_site | DEBIAN | enable the default site
+  file:
+    path: "{{nginx_dir}}/sites-enabled/default"
+    src: "{{nginx_dir}}/sites-available/default"
+    state: link
+  notify:
+    - restart nginx
+  when: ansible_os_family == 'Debian'

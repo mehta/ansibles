@@ -1,0 +1,10 @@
+# file: nginx/tasks/modules/http_gzip_static_module.yml
+# configure flag: --with-http_gzip_static_module
+
+- name: http_gzip_static_module | create configuration entry for gzip
+  template:
+    src: ../../templates/modules/http_gzip_static.conf.j2
+    dest: "{{nginx_dir}}/conf.d/http_gzip_static.conf"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: 0644
