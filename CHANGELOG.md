@@ -7,6 +7,9 @@ changelog convention
   - **build**: changes when big chunk of role is written and available for build/revision or bugfixes
 -----
 
+### v0.2.1 (2014-04-28)
+* bugfix: In 'remove users' task of users-role, it has wrong list name, fixed!
+
 ### v0.2.0 (2014-04-28)
 * change: users role working for `Debian` machines, which manages users and groups, it also manages authorized ssh-keys
 
