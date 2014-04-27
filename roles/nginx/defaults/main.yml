@@ -1,8 +1,8 @@
 nginx_install_method: "source" # choices ("package", "source")
 nginx_version: 1.6.0
 
-nginx_group: "nginxxyz"
-nginx_user: "nginxxyz"
+nginx_group: "www-data"
+nginx_user: "www-data"
 nginx_user_password: None
 
 nginx_dir: /etc/nginx

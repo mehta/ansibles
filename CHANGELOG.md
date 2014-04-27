@@ -7,6 +7,9 @@ changelog convention
   - **build**: changes when big chunk of role is written and available for build/revision or bugfixes
 -----
 
+### v0.2.2 (2014-04-28)
+* bugfix: If a unix-user is logged in, than you can't modify subject settings, as a result www-data user for nginx was breaking ansible-process, so solution is to ignore editing user, if user is logged-in.
+
 ### v0.2.1 (2014-04-28)
 * bugfix: In 'remove users' task of users-role, it has wrong list name, fixed!
 

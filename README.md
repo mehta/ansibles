@@ -33,9 +33,10 @@ Thats all of it! Good to go!
 
 Known Issues
 ------
-Issue: Could not import python modules: apt, apt_pkg. Please install python-apt package.
+Warmup Issues:
 
-    ansible -i hosts zeus -a "apt-get install python-apt -y"
+    ansible -i hosts nodename -a "apt-get update"
+    ansible -i hosts nodename -a "apt-get install python-apt -y"
 
 
 Ansible
