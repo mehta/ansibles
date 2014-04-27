@@ -1,0 +1,8 @@
+---
+
+- name: users.yml | manage users
+  hosts: all:!localhost
+  sudo: True
+  gather_facts: True
+  roles:
+    - { role: users, tags: users }

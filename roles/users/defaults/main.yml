@@ -1,0 +1,40 @@
+include_user_groups: []
+exclude_user_groups: []
+include_users: []
+exclude_users: []
+
+
+
+
+
+## Example Entries
+
+# include_user_groups:
+#   - name: "user-name" ## mandatory
+#     system: True      ## mandatory
+#     gid: 20000        ## mandatory
+
+# exclude_user_groups:
+#   - name: "user-name"
+
+# include_users:
+#   - name: "user-name"           ## mandatory: user-name
+#     groups: ["staff", "admin"]  ## mandatory: groups user should belong to
+#     uid: 2001                   ## mandatory: user UID
+#     group_append: True          ## optional: should append mentioned groups? (choice: True, False) Default: False
+#     ssh_keys:                   ## optional
+#       - "ssh-rsa ......."
+#       - "ssh-dss ......."
+#     password: "your-user-pass"  ## optional: set user password Default: None
+#     comment: "user-description" ## optional: set user comment Default: None
+#     shell: "/bin/bash"          ## optional: set user shell Default: /bin/false
+#     createhome: True            ## optional: should I create user home-dir? (choice: True, False) Default: False
+#     system: False               ## optional: should make user account as system account? (choice: True, False) Default: False
+#   - name: "bar"
+#     uid: 2002
+#     groups: ["staff", "audio", "cdrom"]
+#     ssh_keys: []
+
+# exclude_users:
+#   - "foo"
+#   - "bar"

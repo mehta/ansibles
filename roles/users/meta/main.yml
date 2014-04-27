@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: "Abhinav Mehta"
+  license: GPL
+  min_ansible_version: 1.5
+  platforms:
+   - name: Debian
+     versions:
+      - precise pangolin
+      - quantal quetzal
+      - raring ringtail
+      - saucy salamander
+  categories:
+   - common
+dependencies: []
