@@ -1,0 +1,67 @@
+---
+# manage users
+
+
+## For DEBIAN nodes
+- name: main.yml | create user-groups
+  group:
+    name={{item.name}}
+    system={{item.system}}
+    gid={{item.gid}}
+    state=present
+  with_items: include_user_groups
+  when: ansible_os_family == 'Debian'
+
+- name: main.yml | DEBIAN | remove user-groups
+  group: name={{item.name}} state=absent
+  with_items: exclude_user_groups
+  when: ansible_os_family == 'Debian'
+
+- name: main.yml | DEBIAN | create users
+  user:
+    state=present
+    name={{item.name}}
+    groups={{",".join(item.groups)}}
+    uid={{item.uid}}
+    {% if item.append is defined and item.append == True %}
+    append=True
+    {% else %}
+    append=False
+    {% endif %}
+    {% if item.password is defined %}
+    password={{item.password}}
+    {% else %}
+    password=None
+    {% endif %}
+    {% if item.shell is defined %}
+    shell={{item.shell}}
+    {% else %}
+    shell=/bin/false
+    {% endif %}
+    {% if item.createhome is defined and item.createhome == True %}
+    createhome=True
+    {% else %}
+    createhome=False
+    {% endif %}
+    {% if item.system is defined and item.system == True %}
+    system=True
+    {% else %}
+    system=False
+    {% endif %}
+    {% if item.system is defined and item.system == True %}
+    comment={{item.comment}}
+    {% endif %}
+  with_items: include_users
+  when: ansible_os_family == 'Debian'
+
+- name: main.yml | DEBIAN | remove users
+  user: name={{item.name}} state=absent remove=yes
+  with_items: genericusers_users_removed
+  when: ansible_os_family == 'Debian'
+
+- name: main.yml | DEBIAN | Install the ssh keys for the users
+  authorized_key: "user={{item.0.name}} key='{{item.1}}'"
+  with_subelements:
+    - include_users
+    - ssh_keys
+  when: ansible_os_family == 'Debian'
